@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AirBnB</title>
+        <link rel="stylesheet" href="css/styles.css"></link>
+        
+    </head>
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <body>
+        <div class="main-container" >
+
+            <header class="home-header">
+                <div class="home-logo-content">
+                    <img id="logo" src="images/icons/logo_salmon.png" alt="search" style="width: 36px; height:36px; margin-top:2px"/>
+                    <span>airbnb</span>
+                </div>
+                <div class="home-searchbar">
+                    
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="/" class="middle"> Places to stay </a></li>
+                        <li><a href="/" class="middle"> Monthly Stays </a></li>
+                        <li><a href="/" class="middle"> Experiences </a></li>
+                </div>
+                <div class="home-options">
+                    <div class="language-select-div">
+                        <img id="language-select-image" src="images/icons/language.png" alt="lan" style="width:20px;height: 20px;position:absolute; margin-top: 5px;"/>
+                        <select id="language-select" style="width:48px;margin-left: 15px;margin-top: 5px; border: none;">
+                            <option hidden></option>
+                            <option>$ USD</option>
+                            <option>€ EUR</option>
+                            <option>₹ INR</option>
+                            <option>£ GBP</option>
+                            <option>¥ YEN</option>
+                        </select>
+                    </div>    
+                    <div class="my-profile">
+                        <img src="images/icons/menu.png" alt="lan" style="width:15px;height: 15px; margin-right: 2px; margin-left: 3px;"/>
+                        <img src="images/icons/profile.png" alt="lan" style="width:25px;height: 25px; margin-left:2px"/>
+                    </div>
+                </div>
+            </header>
+
+            
+        
+            <div class="home-content-main">
+                <h1>Get out and stretch your imagination</h1>
+                <h5>You don’t have to go far to find a world of wonder</h5>
+                <button type="button" class="btn">Explore <img src="images/icons/down_white.png"></button>
+            </div>
+
+            <div class="hero">
+                <svg viewBox="0 0 14832 55" class="svg-curve" style="top:1px;height:24px"><path d="M7501.307 8.517l-68.043 39.341c-10.632 6.185-23.795 6.185-34.528 0l-68.144-39.34c-8.91-5.173-18.988-8.215-29.316-8.518H0v55h14832V0H7530.671a63.604 63.604 0 0 0-29.364 8.517z"></path></svg>
+            </div>
+
+            
+           
+        </div>
+
+        <div class="three-features">
+            <h2>Why choose us ?</h2>
+            <h3>Find out why our customers love us!</h3>
+            <div class="three-features-inner">
+                <div class="three-features-item">
+                    <div class="three-features-circle">
+                        <img src="images/icons/discount.png">
+                    </div>
+                    <h4>Our insane discounts</h4>
+                    <p>Low on budget ? No problem. Our discount rates will blow your hats off</p>
+                </div>
+                <div class="three-features-item">
+                    <div class="three-features-circle">
+                        <img src="images/icons/palm-tree.png">
+                    </div>
+                    <h4>Fabulous Locations</h4>
+                    <p>We have hotels at the most beautiful and pristine locations</p>
+                </div>
+                <div class="three-features-item">
+                    <div class="three-features-circle">
+                        <img src="images/icons/room.png">
+                    </div>
+                    <h4>The best hotels. Always</h4>
+                    <p>We make sure you get the best hotels to make your vacation memorable</p>
+                </div>
+            </div>
+        </div>
+
+            <p>djvds</p>
+            <p>djvds</p>
+            <p>djvds</p>
+            <p>djvds</p>
+            <p>djvds</p>
+            <p>djvds</p>
+            <p>djvds</p>
+            <p>djvds</p>
+
+        <script src="js/home.js"></script>
+        
+
+        <!-- Header Scripts -->
+        <script id="searchbar-inside" type="text/html">
+            <div class="location">
+                <span class="searchbar-title fadeIn">Location</span>
+                <input class="searchbar-input fadeIn" placeholder="Where are you going ?"/>
+            </div>
+            <div class="check-in">
+                <span class="searchbar-title fadeIn">Check In</span>
+                <input class="searchbar-input fadeIn" placeholder="Select dates"/>
+            </div>
+            <div class="check-out">
+                <span class="searchbar-title fadeIn">Check Out</span>
+                <input class="searchbar-input fadeIn" placeholder="Select dates"/>
+            </div>
+            <div class="guests">
+                <span class="searchbar-title fadeIn">Guests</span>
+                <input class="searchbar-input fadeIn" placeholder="Add guests"/>
+            </div>
+            <button class="search-button-large fadeIn">
+                <img src="images/icons/search.png" alt="search" style="width:20px; height:20px; margin-top:2px"/>
+            </button>
+        </script>
+
+        <script id="searchbar-outside" type="text/html">
+            <div class="home-searchbar-small">
+                
+                <input class="searchbar-small-input" placeholder="Search your location"/>
+                <button type="submit" type="reset" class="search-button-small btn-success"><img src="images/icons/search.png" alt="search" style="width:15px; height:15px; margin-top:2px"/></button>
+                
+            </div>
+        </script>
+
+        <script>feather.replace()</script>
+        
+    </body>
+</html>
