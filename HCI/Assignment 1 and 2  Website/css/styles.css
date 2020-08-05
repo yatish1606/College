@@ -535,4 +535,198 @@ option  {
     display: flex;
 }
 
+.box {
+    width:70%;
+    align-self: center;
+    height: 210px;
+    border-radius: 10px;
+    background-color:#f6f6f6;
+    margin: 40px auto;
+    flex-direction: row;
+    display: flex;
+    margin-top: 60px;
+}
+.box-left {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 50px;
+}
+.box-right {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+.box-right img{
+    width:130px;
+    height: 130px;
+}
+.box-left h2 {
+    width: 90%;
+    font-family: 'Montserrat', sans-serif;
+    font-size:20px;
+    font-weight: 700;
+    color: #2a2b2b;
+    text-align: center;
+    margin:10px auto;
+    margin-top: 20px;
+}
+.box-left p {
+    width: 80%;
+    font-family: 'Montserrat', sans-serif;
+    font-size:16px;
+    font-weight: 500;
+    color: #878787;
+    text-align: center;
+    line-height: 25px;
+    margin:10px auto;
+}
+.box-left button {
+    margin-top: 10px;
+    background-color:#FF5A5F;
+    border: 2px solid #FF5A5F;
+    transition: 0.3s;
+    width:120px;
+    height: 42px;
+    font-size: 14px;
+}
+.box-left button:hover {
+    background-color:transparent;
+    border: 2px solid #FF5A5F;
+    transition: 0.3s;
+    color: #FF5A5F
+}
+
+.locations-list {
+    width:70%;
+    align-self: center;
+    height: 400px;
+    border-radius: 10px;
+    background-color:transparent;
+    margin: 40px auto;
+    flex-direction: column;
+    display: flex;
+}
+.locations-list-top{
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 30px;
+}
+.locations-list h2 {
+    font-size: 25px;
+    color: #2a2b2b
+}
+.small-arrow {
+    width:20px;
+    height: 20px;
+    transform: rotate(90deg);
+    margin-right: 20px;
+    transition:0.3s;
+}
+.small-arrow:hover {
+    width:20px;
+    height: 20px;
+    transform: rotate(90deg);
+    margin-right: 5px;
+    transition:0.3s;
+}
+
+.locations {
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.card-body {
+    width:230px;
+    height: 250px;
+    background-color:red;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 15px 10px 0px;
+    transition:0.3s
+}
+.card-body:hover {
+    transform: scale(1.05);
+    transition: 0.3s
+}
+
+.card-image {
+    height: 100%;
+    background-color:green;
+    width:100%;
+}
+.hotel-image {
+    width:100%;
+    height:100%;
+}
+.card-bottom {
+    height: 60px;
+    margin-top: 190px;
+    z-index: 10;
+    bottom: 0;
+    width: 100%;
+    background-color:transparent
+}
+.card-bottom span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
+    height: 30px;
+}
+.card-bottom h4 {
+    font-size: 19px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+.card-bottom p {
+    font-size: 12px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    padding-top: 5px;
+    padding-left: 5px
+}
+.get-hotels {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+.get-hotels a {
+    font-size: 13px;
+    color: #FF5A5F;
+    line-height:30px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.get-hotels-img {
+    width:12px;
+    height: 12px;
+    transform: rotate(-90deg);
+    margin-left: 5px;
+    transition:0.3s
+}
+.get-hotels:hover .get-hotels-img {
+    margin-left: 10px;
+    transition:0.3s
+}
 

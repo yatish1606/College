@@ -5,10 +5,50 @@ const $logo = document.querySelector('.home-logo-content')
 const $logoImage = document.getElementById('logo')
 const $languageSelectImage = document.getElementById('language-select-image')
 const $languageDropdownArrow = document.getElementById('language-select')
+const $locations = document.querySelector('.locations')
 //const $languageSelect = document.getElementById('language-select')
 
-$menu.classList.add("home-searchbar-menu-visible")
-$searchBar.classList.add("home-searchbar-inside");
+const availableCurrencies = [
+    {
+        name : 'London',
+        country : 'United Kingdom',
+        image :'images/london.jpg'
+    },
+    {
+        name : 'New York',
+        country : 'United States',
+        image :'images/new_york.jpg'
+    },
+    {
+        name : 'Bali',
+        country : 'Thailand',
+        image :'images/bali.jpg'
+    },
+    {
+        name : 'Agra',
+        country : 'India',
+        image :'images/agra.jpg'
+    },
+]  
+// <img src="${item.image}"  class="hotel-image" />
+const loadLocations = function() {
+    availableCurrencies.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.classList = 'card-body';
+
+    const content = `
+        <div class="card-body" style="background-image:linear-gradient(to top, #000000ba 20%, #00000000 30%), url(${item.image}); background-size:cover">
+            <div class="card-bottom">
+                <span><h4>${item.name} ,</h4><p>${item.country}</p></span>
+                <div class="get-hotels">
+                    <h5><a href="/">Find Hotels</a></h5>
+                    <img src="images/icons/down_salmon.png" class="get-hotels-img"/>
+                </div>
+            </div>
+        </div>
+    `
+    $locations.innerHTML += content
+})}
 
 
 window.onload = function runOnLoad() {
@@ -17,22 +57,16 @@ window.onload = function runOnLoad() {
     $logoImage.src = "images/icons/logo_white.png"
     $languageSelectImage.src = "images/icons/language_white.png"
     $languageDropdownArrow.src = "images/icons/down_white.png"
+    $menu.classList.add("home-searchbar-menu-visible")
+    $searchBar.classList.add("home-searchbar-inside");
+
+    loadLocations()
 }
 
 
-//window.scroll(0,1)
-
-// availableCurrencies.forEach(language => {
-//     let newOption = new Option('Option Text','Option Value');
-//     $languageSelect.add(newOption, undefined)
-// })
-
-// for(index in example_array) {
-//     select.options[select.options.length] = new Option(example_array[index], index);
-// }
-
-
 window.addEventListener('scroll', event => {
+
+    
     
     if(this.scrollY > 0){
         $header.classList.add('white-bg')
