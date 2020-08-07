@@ -1,0 +1,154 @@
+@import 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700;800;900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700;800;900&display=swap';
+
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.fadeIn{
+    animation: fadeIn ease 1s;
+}
+
+.fadeOut{
+    animation: fadeOut ease 1s
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 100%;
+}
+
+.iframe-footer {
+    width: 100%;
+    height: 540px;
+    border: none;
+    margin-top: 30px;
+    background-color: #2a2b2b;
+    margin-bottom: 0;
+    padding:0;
+}
+
+.iframe-header {
+    width: 100%;
+    height: 90px;
+    border: none;
+    /* border-bottom: 1px #d3d3d3 solid; */
+    background-color: transparent;
+    margin-bottom: 0;
+    padding:0;
+    position: absolute;
+}
+
+.main-container {
+    margin: 0;
+    width: 100%;
+    color: blue;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: inherit;
+    display: flex;
+    flex-direction: column;
+    background-image:linear-gradient(to bottom right, #0000004a 50%, #00000000), url("../images/new_york.jpg");
+    background-size: cover;
+    
+}
+
+.main-content {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    align-items: center;  
+    flex-direction: column;
+    padding-top: 90px;
+}
+
+.main-content h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 90px;
+    border-bottom: 1.7px solid #fff;
+    border-bottom-left-radius:2px;
+    border-bottom-right-radius:2px;
+    border-top-left-radius:2px;
+    border-top-right-radius:2px;
+    line-height:75px
+}
+.main-content h6 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.hero {
+    color: #111236;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    box-sizing: inherit;
+    position: relative;
+    display: flex;
+    min-width: 10rem;
+    height: 1.5rem;
+    overflow: hidden;
+    width: 100%;
+    align-items: flex-end;
+    align-self: flex-end;
+}
+.hero::after{
+    box-sizing: inherit;
+}
+.hero::before{
+    box-sizing: inherit;
+}
+
+.svg-curve {
+    color: #111236;
+    /* font-family: Skyscanner Relative,-apple-system,BlinkMacSystemFont,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Arial,sans-serif; */
+    font-size: 1rem;
+    line-height: 1.3rem;
+    box-sizing: inherit;
+    position: absolute;
+    bottom: -1px;
+    width: 700rem;
+    height: 1.5rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    fill: #fff;
+    overflow: hidden;
+    
+}
+.svg-curve::before {
+    box-sizing: inherit;
+}
+.svg-curve::after {
+    box-sizing: inherit;
+}
+
+.search-hotels {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 70px;
+    height: 200px;
+    background-color: #2a2b2b6a;
+    border-radius: 100px;
+}
+
