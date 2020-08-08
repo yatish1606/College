@@ -435,10 +435,10 @@ html, body {
 }
 
 .hotel-info-box h2 {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Nunito Sans", sans-serif;
     font-size: 24px;
     color: #2a2b2b;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0px 10px;
     margin-top: 20px;
 }
@@ -452,9 +452,10 @@ html, body {
     padding:0
 }
 .hotel-rating img {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     margin-right: 5px;
+    margin-top: 3px;
 }
 .hotel-rating h2 {
     font-family: "Nunito Sans", sans-serif;
@@ -503,3 +504,41 @@ html, body {
     z-index: 100;
     border-radius: 10px;
 }
+
+.features {
+    margin: 5px 15px;
+    display: flex;
+    flex-direction: row;
+}
+.features p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    color: #878787;
+    font-weight: 600;
+    margin: 5px 0;
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #eee;
+    border-radius: 30px;
+}
+
+.location-distance {
+    margin: 5px 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.location-distance img {
+    width:20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.location-distance p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    color: #ababab;
+    font-weight: 400;
+    margin: 0;
+}
+
+

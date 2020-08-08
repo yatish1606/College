@@ -284,6 +284,9 @@ option  {
     width: 50%;
     text-align: center;
     line-height: 85px;
+    @media (max-width: 700px){
+        width: 80%
+    }
 }
 
 .home-content-main h5 {
