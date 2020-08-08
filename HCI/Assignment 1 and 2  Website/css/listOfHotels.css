@@ -26,6 +26,7 @@ html, body {
     padding: 0;
     font-family: 'Montserrat', sans-serif;
     max-width: 100%;
+    background-color: #F1F2F8;
 }
 
 .iframe-footer {
@@ -43,7 +44,7 @@ html, body {
     height: 90px;
     border: none;
     /* border-bottom: 1px #d3d3d3 solid; */
-    background-color: white;
+    background-color: transparent;
     margin-bottom: 0;
     padding:0;
     position: absolute;
@@ -64,7 +65,7 @@ html, body {
 }
 
 .main-content {
-    height: 600px;
+    height: 540px;
     width: 100%;
     display: flex;
     align-items: center;  
@@ -79,7 +80,7 @@ html, body {
     color: #fff;
     text-align: center;
     margin: 0 auto;
-    margin-top: 90px;
+    margin-top: 80px;
     border-bottom: 1.7px solid #fff;
     border-bottom-left-radius:2px;
     border-bottom-right-radius:2px;
@@ -132,7 +133,7 @@ html, body {
     height: 1.5rem;
     margin-left: 50%;
     transform: translateX(-50%);
-    fill: #fff;
+    fill: #F1F2F8;
     overflow: hidden;
     
 }
@@ -148,7 +149,7 @@ html, body {
     margin: 0 auto;
     margin-top: 70px;
     /* height: 200px; */
-    background-color: #2a2b2baa;
+    background-color: #2a2b2bca;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -168,7 +169,7 @@ html, body {
     width: calc(100% - 50px);
     margin: 0px 25px;
     height: 1px;
-    background-color: #878787;
+    background-color: #636363;
     border-radius: 1px;
 }
 
@@ -176,7 +177,7 @@ html, body {
     font-size: 16px;
     color: white;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     vertical-align: center;
     margin: auto 15px;
 }
@@ -256,22 +257,22 @@ html, body {
 }
 
 .location:hover {
-    background-color: #d3d3d3;
+    background-color: #eee;
     transition: 0.3s
 }
 
 .check-in:hover {
-    background-color: #d3d3d3;
+    background-color: #eee;
     transition: 0.3s
 }
 
 .check-out:hover {
-    background-color: #d3d3d3;
+    background-color: #eee;
     transition: 0.3s;
 }
 
 .guests:hover {
-    background-color: #d3d3d3;
+    background-color: #eee;
     transition: 0.3s
 }
 
@@ -337,8 +338,168 @@ html, body {
 }
 
 .search-button {
-    width: 20%;
+    width: 140px;
     height:100%;
     border-radius: 50px;
     background-color: #ff5a5f;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+}
+.search-button img {
+    width:18px;
+    height: 18px;
+    margin: auto 5px;
+}
+.search-button p {
+    margin: auto 5px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.search-button:hover {
+    background-color: #E41D5A;
+    transition: 0.3s
+}
+
+.info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.info img {
+    width:20px;
+    height: 20px;
+    margin: auto 10px;
+}
+.info p {
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    color: #eee;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.list-of-hotels {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.left-box {
+    width: 25%;
+    margin: 0 auto;
+    background-color:gold;
+    height: 300px;
+}
+
+.right-box {
+    width: 75%;
+    height: 700px;
+    background-color: transparent;
+}
+
+.hotel-card {
+    width:100%;
+    margin: 10px auto;
+    background-color: white;
+    height: 250px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    overflow: hidden;
+    position: relative; 
+}
+
+.hotel-image-box {
+    width:25%;
+    height: 100%;
+    background-color:goldenrod;
+    overflow: hidden;
+}
+
+.hotel-info-box {
+    width:54.8%;
+    height: 100%;
+    background-color:white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.hotel-info-box h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
+    color: #2a2b2b;
+    font-weight: 600;
+    margin: 0px 10px;
+    margin-top: 20px;
+}
+
+
+.hotel-rating {
+    margin: 5px 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding:0
+}
+.hotel-rating img {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+}
+.hotel-rating h2 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 18px;
+    color: #FFC107;
+    font-weight: 700;
+    margin: 0;
+    margin-top: 5px;
+}
+.hotel-rating p {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 13px;
+    color: #ababab;
+    font-weight: 400;
+    margin: 0;
+    margin-left: 5px;
+    margin-top: 8px;
+}
+
+.hotel-price-box {
+    width:19%;
+    height: 100%;
+    background-color:white;
+    border-radius: 20px;
+    padding: 20px 0;
+    margin-left: 5px;
+}
+
+.top-circle-cut {
+    width: 20px;
+    height: 20px;
+    background-color: #F1F2F8;
+    position : absolute;
+    top : -10px;
+    right : calc(20% - 10px);
+    z-index: 100;
+    border-radius: 10px;
+}
+.bottom-circle-cut {
+    width: 20px;
+    height: 20px;
+    background-color: #F1F2F8;
+    position : absolute;
+    bottom : -10px;
+    right : calc(20% - 10px);
+    z-index: 100;
+    border-radius: 10px;
 }

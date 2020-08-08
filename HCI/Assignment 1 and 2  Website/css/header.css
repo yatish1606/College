@@ -194,17 +194,17 @@ select.change {
     margin: auto 15px;
     justify-content: center;
     transition: 0.4s;
-    color: #878787
+    color: #fff
 }
 .menu li:hover {
-    background-color: #FF5A5F;
+    background-color: #ffffff17;
     transition: 0.4s;
     color: #fff;
 }
 .menu a {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     color: inherit;
 }
