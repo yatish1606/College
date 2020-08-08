@@ -194,10 +194,10 @@ select.change {
     margin: auto 15px;
     justify-content: center;
     transition: 0.4s;
-    color: #fff
+    color: #878787
 }
 .menu li:hover {
-    background-color: #FF5A5Faa;
+    background-color: #FF5A5F;
     transition: 0.4s;
     color: #fff;
 }

@@ -43,7 +43,7 @@ html, body {
     height: 90px;
     border: none;
     /* border-bottom: 1px #d3d3d3 solid; */
-    background-color: transparent;
+    background-color: white;
     margin-bottom: 0;
     padding:0;
     position: absolute;
@@ -147,8 +147,198 @@ html, body {
     width: 70%;
     margin: 0 auto;
     margin-top: 70px;
-    height: 200px;
-    background-color: #2a2b2b6a;
-    border-radius: 100px;
+    /* height: 200px; */
+    background-color: #2a2b2baa;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
+.search-hotels-info {
+    width: calc(100% - 30px);
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: transparent;
+    vertical-align: center;
+    margin: auto;
+}
+
+.separator {
+    width: calc(100% - 50px);
+    margin: 0px 25px;
+    height: 1px;
+    background-color: #878787;
+    border-radius: 1px;
+}
+
+.search-hotels-info h5 {
+    font-size: 16px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    vertical-align: center;
+    margin: auto 15px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color:#ff5a5f;
+    margin: auto 0px;
+}
+
+.searchbar {
+    width: calc(100% - 30px);
+    /* height: 80px; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px 15px 5px 15px;
+    border-radius:10px;
+    overflow: hidden;
+}
+
+.searchbar-inner {
+    width: calc(100% - 10px);
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: white;
+    margin: 0px 5px 5px 5px;
+    border-radius:10px;
+    overflow: hidden;
+}
+
+.searchbar-info {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: transparent;
+    margin: 5px 0px 5px 0px;
+    border-radius:10px;
+    overflow: hidden;
+}
+
+.searchbar-info h3 {
+    font-size: 14px;
+    color: #ff5a5f;
+    font-family: 'Montserrat', sans-serif;
+    margin: auto 10px;
+    font-weight: 600;
+}
+
+.location-width {
+    width: 50%;
+}
+.check-in-width {
+    width: 15%;
+}
+.check-out-width {
+    width: 15%;
+}
+.guests-width {
+    width: 20%;
+}
+
+.location {
+    width: 48.5%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    transition:0.3s
+}
+
+.location:hover {
+    background-color: #d3d3d3;
+    transition: 0.3s
+}
+
+.check-in:hover {
+    background-color: #d3d3d3;
+    transition: 0.3s
+}
+
+.check-out:hover {
+    background-color: #d3d3d3;
+    transition: 0.3s;
+}
+
+.guests:hover {
+    background-color: #d3d3d3;
+    transition: 0.3s
+}
+
+.check-in {
+    width: 15.5%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    transition:0.3s
+}
+
+.check-out {
+    width: 15.5%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    transition:0.3s
+}
+
+.guests {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    transition:0.3s
+}
+
+.searchbar input {
+    padding: auto 10px;
+    width: calc(100% - 20px);
+    height: 40px;
+    font-size: 15px;
+    color: #878787;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    margin: auto;
+    border: none;
+    background: none;
+}
+
+.vertical-separator {
+    width:0.5px;
+    height: calc(100% - 14px);
+    margin: 7px 0;
+    background-color:#d3d3d3;
+}
+
+.bottom-bar {
+    width: calc(100% - 40px);
+    margin: 0px 20px 10px 20px;
+    background-color:transparent;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-button {
+    width: 20%;
+    height:100%;
+    border-radius: 50px;
+    background-color: #ff5a5f;
+}
