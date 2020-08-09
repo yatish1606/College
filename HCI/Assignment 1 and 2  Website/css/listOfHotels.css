@@ -510,10 +510,10 @@ html, body {
     display: flex;
     flex-direction: row;
 }
-.features p {
+.feature{
     font-family: "Montserrat", sans-serif;
     font-size: 12px;
-    color: #878787;
+    color: #2a2b2b;
     font-weight: 600;
     margin: 5px 0;
     margin-right: 10px;
@@ -529,16 +529,168 @@ html, body {
     align-items: center;
 }
 .location-distance img {
-    width:20px;
-    height: 20px;
-    margin-right: 10px;
+    width:15px;
+    height: 15px;
+    margin-right: 5px;
 }
 .location-distance p {
     font-family: "Montserrat", sans-serif;
-    font-size: 13px;
-    color: #ababab;
+    font-size: 12.5px;
+    color: #878787;
     font-weight: 400;
     margin: 0;
 }
 
+.gradient {
+    background: linear-gradient(to bottom, #F1F2F8, #d3d3d3, #F1F2F8)
+}
 
+.amenities {
+    margin: 5px 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.amenity {
+    display: flex;
+    flex-direction: row;
+    padding: 0 5px;
+    margin: 10px 10px 10px 0;
+    align-items: center;
+}
+.amenity img {
+    width:17px;
+    height: 17px;
+    margin:0;
+    margin-right: 5px;
+}
+.amenity p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    color: #878787;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+}
+
+.prices {
+    margin: 10px 5px;
+    display: flex;
+    flex-direction: row;
+}
+.price-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 10px;
+}
+.price-box p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    color: #2a2b2b;
+    font-weight: 500;
+    margin: 0px 0;
+    text-align: left;
+}
+.price-box h3 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 19px;
+    color: #2a2b2b;
+    font-weight: 700;
+    margin: 5px 0 5px 0;
+    text-align: left;
+}
+
+.separator-grey {
+    width: calc(100% - 30px);
+    margin: 0px 15px;
+    height: 1px;
+    background-color: #eee;
+    border-radius: 1px;
+}
+
+.hotel-price-box h5 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    color: #2a2b2b;
+    font-weight: 700;
+    margin: 5px 0 0 0;
+    text-align: right;
+    margin-right: 15px;
+}
+.hotel-price-box h4 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    color: #2a2b2b;
+    font-weight: 500;
+    margin: 0px;
+    text-align: right;
+    margin-right: 15px;
+}
+.parent-div {
+    align-self: flex-end;
+    margin: 15px 15px 0 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.hotel-price-box h6 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    color: #fff;
+    font-weight: 600;
+    text-align: right;
+    background-color: #ff5a5f;
+    border-radius: 20px;
+    /* width: 100px; */
+    align-self: flex-end;
+    margin: 0;
+    padding: 4px 8px;
+
+}
+.hotel-price-box h1 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 28px;
+    color: #2a2b2b;
+    font-weight: 800;
+    margin: 5px 0 0 0;
+    text-align: right;
+    margin-right: 15px;
+    line-height:28px;
+}
+.hotel-price-box h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    color: #878787;
+    font-weight: 500;
+    margin: 0px 0 0 0;
+    text-align: right;
+    margin-right: 15px;
+}
+.hotel-price-box p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    color: #ababab;
+    font-weight: 400;
+    margin: 0px 0 0 0;
+    text-align: right;
+    margin-right: 15px;
+}
+
+.book-button {
+    width: calc(100% - 20px);
+    margin: 35px 10px 10px 10px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: #FF5A5F;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.3s;
+}
+.book-button:hover {
+    background-color: #E41D5A;
+    transition: 0.3s;
+}
