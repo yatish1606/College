@@ -59,7 +59,7 @@ html, body {
     box-sizing: inherit;
     display: flex;
     flex-direction: column;
-    background-image:linear-gradient(to bottom right, #0000004a 50%, #00000000), url("../images/new_york.jpg");
+    background-image:linear-gradient(to bottom right, #0000004a 50%, #00000000), url("../images/dubai.jpg");
     background-size: cover;
     
 }
@@ -405,8 +405,7 @@ html, body {
 
 .filters {
     width: 100%;
-    height: 300px;
-    background-color: white;
+    background-color: transparent;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -447,10 +446,10 @@ html, body {
     border-radius: 5px;
     transition: 0.3s;
 }
-.hotel-image-box img:hover {
+/* .hotel-image-box img:hover {
     -webkit-mask-image: radial-gradient(circle at 90% , yellow 50%, rgba(0, 0, 0, 0.9) 10%);
     transition: 0.3s
-}
+} */
 
 .hotel-info-box {
     width:49.8%;
@@ -465,7 +464,7 @@ html, body {
     font-size: 24px;
     color: #2a2b2b;
     font-weight: 700;
-    margin: 0px 10px;
+    margin: 0px 15px;
     margin-top: 20px;
 }
 
@@ -486,7 +485,7 @@ html, body {
 .hotel-rating h2 {
     font-family: "Nunito Sans", sans-serif;
     font-size: 18px;
-    color: #FFC107;
+    color: #E8AD04;
     font-weight: 700;
     margin: 0;
     margin-top: 5px;
@@ -720,4 +719,163 @@ html, body {
 .book-button:hover {
     background-color: #E41D5A;
     transition: 0.3s;
+}
+
+.filters-title {
+    width: calc(100% - 30px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    margin-top: 15px;
+    margin-bottom: 15px
+}
+.filters-title h5 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    color: #2a2b2b;
+    font-weight: 600;
+    margin: 0px 0 0 0;
+}
+.filters-title img {
+    width: 22px;
+    height: 22px;
+    transform: rotate(-90deg);
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    margin: 0 15px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: #3E3F3F;
+    font-weight: 500;
+    margin-top: 2px;
+    padding: 5px 8px;
+    transition: 0.3s;
+    border-radius: 10px;
+    margin-left: 8px;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 0.5px solid #d3d3d3;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #eee;
+}
+ 
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #ff5a5f;
+    border: 0.5px solid #ff5a5f;
+    transition: 0.3s;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+.checkbox-container .checkmark:after {
+    left: 7.5px;
+    top: 4px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 1.5px 1.5px 0;
+    border-radius: 0.1px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.filters h6 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    color: #2a2b2b;
+    font-weight: 600;
+    margin: 10px 15px;
+    margin-top: 25px;
+}
+
+.price-filter {
+    width: calc(100% - 30px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #878787;
+    font-weight: 500;
+    margin: 0 15px;
+}
+.price-filter input[type=text] {
+    width: 23%;
+    background-color:white;
+    border-radius: 20px;
+    height: 30px;
+    border: 0.5px solid #f6f6f6;
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #878787;
+    font-weight: 500;
+}
+.price-filter button {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    background-color:#FF5A5F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    transition: 0.3s;
+    margin-left: 10px;
+}
+.price-filter button:hover {
+    background-color: #E41D5A;
+    transition: 0.3s;
+}
+.price-filter button img {
+    width:15px;
+    height: 15px;
+}
+
+.results-text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    color: #2a2b2b;
+    font-weight: 700;
+    width: 90%;
+    margin: 10px auto;
+    padding-left: 20px;
 }
