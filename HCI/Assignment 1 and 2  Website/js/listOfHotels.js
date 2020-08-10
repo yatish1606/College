@@ -4,7 +4,7 @@ const colors = ['#1094C34a', '#0BB02E3a', '#ED8A0E4a', '#460EED2a', '#0E83ED3a']
 
 const hotelsList = [
     {
-        image : [],
+        image : '../images/sheraton_grand.jpg',
         name : 'Sheraton Grand Dubai',
         rating : 4.5,
         reviewsNumber : 1135,
@@ -20,6 +20,10 @@ const hotelsList = [
             {
                 image : '../images/icons/air_conditioned.png',
                 description : 'Air Conditioned'
+            },
+            {
+                image : '../images/icons/parking.png',
+                description : 'Parking'
             },
         ],
         prices : [
@@ -38,13 +42,14 @@ const hotelsList = [
         ]
     },
     {
-        image : [],
+        image : '../images/the_palm.jpg',
         name : 'The Palm',
         rating : 4.8,
         reviewsNumber : 5605,
         features : [
             'Good cleanliness',
-            'Pets allowed'
+            'Pets allowed',
+            "Breakfast included"
         ],
         amenities : [
             {
@@ -59,15 +64,15 @@ const hotelsList = [
         prices : [
             {
                 name : 'Booking.com',
-                price : '16,350',
+                price : '21,050',
             },
             {
                 name : 'MakeMyTrip',
-                price : '17,250',
+                price : '23,250',
             },
             {
                 name : 'Agoda',
-                price : '18,020',
+                price : '25,920',
             },
         ]
     }
@@ -80,14 +85,14 @@ Array.from($features).forEach($feature => {
 const loadHotels = function() {
     console.log('Loading hotels')
     const $hotelContainer = document.querySelector('.right-box')
-
+    
     hotelsList.forEach(hotel => {
         const card = document.createElement('div');
 
         const content = `
         <div class="hotel-card">
             <div class="hotel-image-box">
-
+                <img src="${hotel.image}"/>
             </div>
             <div class="hotel-info-box">
                 <h2>${hotel.name}</h2>
@@ -110,20 +115,13 @@ const loadHotels = function() {
                     `).join('')} 
                 </div>
                 <div class="prices">
+                ${hotel.prices.map(price => `
                     <div class="price-box">
-                        <p>Booking.com</p>
-                        <h3>₹ 16,350</h3>
+                        <p>${price.name}</p>
+                        <h3>&#8377; ${price.price}</h3>
                     </div>
                     <div class="vertical-separator" style="margin: 0 5px; height: 40px; vertical-align: middle;"></div>
-                    <div class="price-box">
-                        <p>MakeMyTrip</p>
-                        <h3>₹ 17,250</h3>
-                    </div>
-                    <div class="vertical-separator" style="margin: 0 5px; height: 40px;"></div>
-                    <div class="price-box">
-                        <p>Agoda</p>
-                        <h3>₹ 18,020</h3>
-                    </div>
+                `).join('')}
                 </div>
             </div>
             <div class="vertical-separator gradient" style="background-color: #F1F2F8; width:4px; left:-2px"></div>
@@ -131,9 +129,9 @@ const loadHotels = function() {
                 <h5>Lowest price</h5>
                 <h4>we found for this hotel</h4>
                 <div class="parent-div">
-                    <h6>Booking.com</h6>
+                    <h6>${hotel.prices[0].name}</h6>
                 </div>         
-                <h1>₹ 16,350</h1>
+                <h1>&#8377; ${hotel.prices[0].price}</h1>
                 <h3>a night</h3>
                 <p>taxes and fees not included</p>
                 <button class="book-button">Book</button>
@@ -144,10 +142,12 @@ const loadHotels = function() {
         `
         $hotelContainer.innerHTML += content
     })
+
     
 }
 
 window.onload = function runOnLoad() {
     loadHotels()
+    
 }
 
