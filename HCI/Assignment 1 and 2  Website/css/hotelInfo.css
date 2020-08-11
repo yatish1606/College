@@ -61,6 +61,7 @@ html, body {
     flex-direction: column;
     background-image:linear-gradient(to bottom right, #0000004a 50%, #00000000), url("../images/dubai.jpg");
     background-size: cover;
+    background-color:#F1F2F8
     
 }
 
@@ -136,10 +137,31 @@ html, body {
 .hotel-header-right {
     display: flex;
     flex-direction: row;
-    background-color: gold;
+    background-color: transparent;
     height: 100%;
     width: 20%;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 10px;
 }
+.hotel-header-right-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 10px
+}
+.hotel-header-right img {
+    width: 22px;
+    height: 22px;
+    margin: 0px 8px;
+}
+.hotel-header-right p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
 .hotel-header h2 {
     font-family: "Montserrat", sans-serif;
     font-size: 40px;
@@ -195,4 +217,134 @@ html, body {
     color: #fff;
     font-weight: 500;
     margin-left: 10px;
+}
+
+.hotel-main-header {
+    width: 80%;
+    height: 350px;
+    background-color:transparent;
+    margin-top:30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+.book {
+    height: 350px;
+    width: 35%;
+    background-color: white;
+    border-radius: 10px;
+}
+.book-dates {
+    width: calc(100% - 40px);
+    margin: 20px;
+    height: 45px;
+    background-color:transparent;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.book-dates img {
+    width:16px;
+    height: 16px;
+    margin:5px
+}
+.book-check-in {
+    width: 46%;
+    height: 100%;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0.5px solid #d3d3d3;
+    border-left: 8px solid green;
+}
+.book-check-out {
+    width: 46%;
+    height: 100%;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0.5px solid #d3d3d3;
+    border-left: 8px solid #E41D5A;
+}
+
+.images {
+    height: 350px;
+    width: 64%;
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 1%;
+}
+
+
+
+.hotel-bar {
+    width: 50%;
+    height: 35px;
+    background-color: transparent;
+    border-radius: 10px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 10%;
+    padding-left: 10px;
+}
+.hotel-bar-text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    margin: 0;
+    color: #ff5a5f;
+    font-weight: 600;
+    line-height: 20px;
+    border-bottom: 5px solid #ff5a5f;
+    padding:0;
+    height: 100%;
+}
+
+.check-div {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 10px);
+    margin: 5px 5px;
+    width: 100%;
+}
+.check-div h6  {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    margin: 0;
+    color: #ababab;
+    font-weight: 600;
+}
+.check-div input  {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 15px;
+    margin: 0;
+    color: #2a2b2b;
+    font-weight: 600;
+    height: 35px;
+    width: 100%;
+    border: none;
+}
+
+.guests {
+    width: calc(100% - 40px);
+    margin: 20px;
+    height: 45px;
+    background-color:transparent;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #d3d3d3;
+    margin-top: 10px;
+    border-radius:7px;
+}
+.guests img {
+    width:18px;
+    height: 18px;
+    margin:5px;
+    margin-left: 13px;
 }
