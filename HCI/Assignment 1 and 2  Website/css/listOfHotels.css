@@ -709,12 +709,15 @@ html, body {
     border-radius: 40px;
     background-color: #FF5A5F;
     border: none;
+    transition: 0.3s;
+}
+.book-button a {
+    text-decoration: none;
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
     color: #fff;
     font-weight: 600;
     text-align: center;
-    transition: 0.3s;
 }
 .book-button:hover {
     background-color: #E41D5A;

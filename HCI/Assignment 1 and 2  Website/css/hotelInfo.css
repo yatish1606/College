@@ -1,0 +1,198 @@
+@import 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;600;700;800;900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700;800;900&display=swap';
+
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.fadeIn{
+    animation: fadeIn ease 1s;
+}
+
+.fadeOut{
+    animation: fadeOut ease 1s
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 100%;
+    background-color: #F1F2F8;
+}
+
+.iframe-footer {
+    width: 100%;
+    height: 540px;
+    border: none;
+    margin-top: 30px;
+    background-color: #2a2b2b;
+    margin-bottom: 0;
+    padding:0;
+}
+
+.iframe-header {
+    width: 100%;
+    height: 90px;
+    border: none;
+    /* border-bottom: 1px #d3d3d3 solid; */
+    background-color: transparent;
+    margin-bottom: 0;
+    padding:0;
+    position: absolute;
+}
+
+.main-container {
+    margin: 0;
+    width: 100%;
+    color: blue;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: inherit;
+    display: flex;
+    flex-direction: column;
+    background-image:linear-gradient(to bottom right, #0000004a 50%, #00000000), url("../images/dubai.jpg");
+    background-size: cover;
+    
+}
+
+.main-content {
+    height: 540px;
+    width: 100%;
+    display: flex;
+    align-items: center;  
+    flex-direction: column;
+    padding-top: 90px;
+}
+
+.hero {
+    color: #111236;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    box-sizing: inherit;
+    position: relative;
+    display: flex;
+    min-width: 10rem;
+    height: 1.5rem;
+    overflow: hidden;
+    width: 100%;
+    align-items: flex-end;
+    align-self: flex-end;
+}
+.hero::after{
+    box-sizing: inherit;
+}
+.hero::before{
+    box-sizing: inherit;
+}
+
+.svg-curve {
+    color: #111236;
+    /* font-family: Skyscanner Relative,-apple-system,BlinkMacSystemFont,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Arial,sans-serif; */
+    font-size: 1rem;
+    line-height: 1.3rem;
+    box-sizing: inherit;
+    position: absolute;
+    bottom: -1px;
+    width: 700rem;
+    height: 1.5rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    fill: #F1F2F8;
+    overflow: hidden;
+    
+}
+.svg-curve::before {
+    box-sizing: inherit;
+}
+.svg-curve::after {
+    box-sizing: inherit;
+}
+
+.hotel-header {
+    width: 80%;
+    
+    background-color:transparent;
+    margin-top:30px;
+    display: flex;
+    flex-direction: row;
+}
+.hotel-header-left {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: transparent;
+    height: 100%;
+}
+.hotel-header-right {
+    display: flex;
+    flex-direction: row;
+    background-color: gold;
+    height: 100%;
+    width: 20%;
+}
+.hotel-header h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 40px;
+    margin: 0;
+    color: #fff;
+    font-weight: 700;
+}
+.hotel-header-rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin :0;
+    overflow: hidden;
+}
+.hotel-header-rating h4 {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 20px;
+    margin: 0;
+    color: #E8AD04;
+    font-weight: 700;
+    padding:0;
+}
+.hotel-header-rating  img {
+    width:20px;
+    height: 20px;
+    margin-right:5px
+}
+.hotel-header-rating p {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 16px;
+    margin: 0;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.hotel-header-location {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin :0;
+    overflow: hidden;
+    margin: 5px 0;
+}
+.hotel-header-location  img {
+    width:15px;
+    height: 15px;
+}
+.hotel-header-location p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    margin: 0;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 10px;
+}
