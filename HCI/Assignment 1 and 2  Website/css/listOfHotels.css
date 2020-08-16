@@ -584,16 +584,16 @@ html, body {
     align-items: center;
 }
 .amenity img {
-    width:17px;
-    height: 17px;
+    width:20px;
+    height: 20px;
     margin:0;
     margin-right: 5px;
 }
 .amenity p {
-    font-family: "Montserrat", sans-serif;
-    font-size: 11px;
-    color: #878787;
-    font-weight: 400;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 12px;
+    color: #484848;
+    font-weight: 600;
     margin: 0;
     text-align: center;
 }

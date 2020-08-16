@@ -617,17 +617,17 @@ html, body {
 }
 .overview-box-left h3 {
     font-family: "Montserrat", sans-serif;
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 1.17em;
+    font-weight: bold;
     color: #2a2b2b;
     margin: 0;
     padding: 0;
 }
 .overview-box-left p {
-    font-family: "Montserrat", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    color: #878787;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #484848;
     margin: 0;
     padding: 0;
     line-height: 20px;
@@ -662,7 +662,7 @@ html, body {
     color: #fff;
     padding:4px 8px;
     border-radius: 20px;
-    background-color: #ff5a5f;
+    background-color: #069C13;
     text-transform: capitalize;
     text-align: center;
     margin:0;
@@ -714,15 +714,15 @@ html, body {
     padding: 8px 0;
 }
 .amenity img {
-    width:18px;
-    height: 18px;
+    width:22px;
+    height: 22px;
 }
 .amenity p {
-    font-family: "Montserrat", sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: #878787;
-    margin: 0 5px;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #484848;
+    margin: 0 8px;
     padding:0;
 }
 
@@ -744,4 +744,171 @@ html, body {
     background-color: #eee;
     border-radius: 30px;
     display: inline-block;
+}
+
+.location-box {
+    width: calc(100% - 20px);
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.location-box h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.17em;
+    font-weight: bold;
+    color: #2a2b2b;
+    margin: 20px 0 0 20px;
+    padding: 0;
+    display: none
+}
+.map {
+    width: 100%;
+    height: 350px;
+    margin: 0px 0 10px 0;
+}
+
+.contact-us {
+    width: 100%;
+    margin: 0px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.contact-us-left {
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    padding: 10px
+}
+
+.contact-us-right {
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    padding: 10px
+}
+
+.contact-us-left-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.contact-us-left-title img{
+    width: 17px;
+    height: 17px;
+}
+
+.contact-us-left-title h5 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    color: #2a2b2b;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.contact-us-left p {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 14px;
+    color: #2a2b2b;
+    font-weight: 500;
+    line-height: 18px;
+    margin-left: 10px;
+}
+
+.contact-us-right-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 15px 0 0 15px;
+}
+
+.contact-us-right-item img {
+    width:15px;
+    height: 15px;
+}
+
+.contact-us-right p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: #2a2b2b;
+    font-weight: 500;
+    line-height: 16px;
+    margin:0;
+    margin-left: 10px;
+    padding:0
+}
+
+.review-box {
+    width: calc(100% - 20px);
+    margin: 10px;
+    height: 300px;
+    background-color: white;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.review-box-titlebar {
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px ;
+}
+
+.review-box-titlebar h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.17em;
+    font-weight: bold;
+    color: #2a2b2b;
+    padding: 0;
+    margin: 0;  
+}
+
+.review-box-titlebar button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 10px;
+    background-color: #FF5A5F;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid #FF5A5F;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin:0
+}
+.review-box-titlebar button:hover {
+    background-color: white;
+    transition: 0.3s;
+    border: 2px solid #FF5A5F;
+    color: #FF5A5F
+}
+
+.review-box-titlebar img {
+    width: 16px;
+    height: 16px;
+    margin: 2px 0px 2px 10px;
+}
+
+.review-box-titlebar h5 {
+    margin: 0;
+    padding: 0;
 }

@@ -20,52 +20,55 @@ window.onload = function runOnLoad() {
     const hotelInfo = JSON.parse(localStorage.getItem('hotelData'))
     console.log(hotelInfo)
 
-    const allHotelsInfo = JSON.parse(localStorage.getItem('hotelsList'))
+    const allHotelsInfo = JSON.parse(localStorage.getItem('hotelList'))
     console.log(allHotelsInfo)
     
     const suggestionHotels = allHotelsInfo.filter(hotel => hotel.name !== hotelInfo.name)
     console.log(suggestionHotels)
 
-    $overview.onclick = function() {
+    $overview.addEventListener('click', function () {
         $overview.style.cssText = activeStyle
         $location.style.cssText = inactiveStyle
         $reviews.style.cssText = inactiveStyle
         $faq.style.cssText = inactiveStyle
         $more.style.cssText = inactiveStyle
         window.scrollTo(0,500)
-    }
+    })
 
-    $reviews.onclick = function() {
-        $reviews.style.cssText = activeStyle
-        $location.style.cssText = inactiveStyle
-        $overview.style.cssText = inactiveStyle
-        $faq.style.cssText = inactiveStyle
-        $more.style.cssText = inactiveStyle
-    }
-
+    
     $location.onclick = function() {
         $location.style.cssText = activeStyle
         $overview.style.cssText = inactiveStyle
         $reviews.style.cssText = inactiveStyle
         $faq.style.cssText = inactiveStyle
         $more.style.cssText = inactiveStyle
+        window.scrollTo(0,1010)
     }
 
-    $faq.onclick = function() {
+    $reviews.addEventListener('click', function () {
+        $reviews.style.cssText = activeStyle
+        $location.style.cssText = inactiveStyle
+        $overview.style.cssText = inactiveStyle
+        $faq.style.cssText = inactiveStyle
+        $more.style.cssText = inactiveStyle
+        window.scrollTo(0,1510)
+    })
+
+    $faq.addEventListener('click', function () {
         $faq.style.cssText = activeStyle
         $location.style.cssText = inactiveStyle
         $reviews.style.cssText = inactiveStyle
         $overview.style.cssText = inactiveStyle
         $more.style.cssText = inactiveStyle
-    }
+    })
 
-    $more.onclick = function() {
+    $more.addEventListener('click', function () {
         $more.style.cssText = activeStyle
         $location.style.cssText = inactiveStyle
         $reviews.style.cssText = inactiveStyle
         $faq.style.cssText = inactiveStyle
         $overview.style.cssText = inactiveStyle
-    }
+    })
 }
 
 const options = [$overview,$location,$reviews,$faq,$more]

@@ -34,19 +34,19 @@ const hotelsList = [
         ],
         amenities : [
             {
-                image : '../images/icons/wifi.png',
+                image : '../images/icons/wifi_black.png',
                 description : 'WiFi'
             },
             {
-                image : '../images/icons/air_conditioned.png',
+                image : '../images/icons/air_conditioned_black.png',
                 description : 'Air Conditioned'
             },
             {
-                image : '../images/icons/parking.png',
+                image : '../images/icons/parking_black.png',
                 description : 'Parking'
             },
             {
-                image : '../images/icons/pool.png',
+                image : '../images/icons/pool_black.png',
                 description : 'Swimming pool'
             },
         ],
@@ -78,15 +78,15 @@ const hotelsList = [
         ],
         amenities : [
             {
-                image : '../images/icons/wifi.png',
+                image : '../images/icons/wifi_black.png',
                 description : 'WiFi'
             },
             {
-                image : '../images/icons/air_conditioned.png',
+                image : '../images/icons/air_conditioned_black.png',
                 description : 'Air Conditioned'
             },
             {
-                image : '../images/icons/gym.png',
+                image : '../images/icons/gym_black.png',
                 description : 'Gym'
             },
         ],
@@ -117,19 +117,19 @@ const hotelsList = [
         ],
         amenities : [
             {
-                image : '../images/icons/wifi.png',
+                image : '../images/icons/wifi_black.png',
                 description : 'WiFi'
             },
             {
-                image : '../images/icons/air_conditioned.png',
+                image : '../images/icons/air_conditioned_black.png',
                 description : 'Air Conditioned'
             },
             {
-                image : '../images/icons/pool.png',
+                image : '../images/icons/pool_black.png',
                 description : 'Swimming pool'
             },
             {
-                image : '../images/icons/gym.png',
+                image : '../images/icons/gym_black.png',
                 description : 'Gym'
             },
         ],
@@ -161,23 +161,23 @@ const hotelsList = [
         ],
         amenities : [
             {
-                image : '../images/icons/wifi.png',
+                image : '../images/icons/wifi_black.png',
                 description : 'WiFi'
             },
             {
-                image : '../images/icons/air_conditioned.png',
+                image : '../images/icons/air_conditioned_black.png',
                 description : 'Air Conditioned'
             },
             {
-                image : '../images/icons/gym.png',
+                image : '../images/icons/gym_black.png',
                 description : 'Gym'
             },
             {
-                image : '../images/icons/fork.png',
+                image : '../images/icons/fork_black.png',
                 description : 'Restaurant'
             },
             {
-                image : '../images/icons/pool.png',
+                image : '../images/icons/pool_black.png',
                 description : 'Swimming pool'
             },
             
@@ -200,6 +200,8 @@ const hotelsList = [
 ]
 
 window.onload = function runOnLoad() {
-    localStorage.setItem('hotelsList', JSON.stringify(hotelsList))
+    
+    localStorage.setItem('hotelList', JSON.stringify(hotelsList))
+    console.log(JSON.parse(localStorage.getItem('hotelList')))
 }
 

@@ -21,7 +21,7 @@ const loadHotels = function() {
     
     const $hotelContainer = document.querySelector('.right-box')
     
-    JSON.parse(localStorage.getItem('hotelsList')).map((hotel, index) => {
+    JSON.parse(localStorage.getItem('hotelList')).map((hotel, index) => {
         const content = `
         <div class="hotel-card">
             <div class="hotel-image-box">
@@ -83,6 +83,9 @@ const loadHotels = function() {
 }
 
 window.onload = function runOnLoad() {
+    console.log(JSON.parse(localStorage.getItem('hotelList')))
     loadHotels()
 }
+
+
 

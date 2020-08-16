@@ -8,7 +8,7 @@ const $languageDropdownArrow = document.getElementById('language-select')
 const $locations = document.querySelector('.locations')
 //const $languageSelect = document.getElementById('language-select')
 
-const availableCurrencies = [
+const locations = [
     {
         name : 'London',
         country : 'United Kingdom',
@@ -32,7 +32,7 @@ const availableCurrencies = [
 ]  
 // <img src="${item.image}"  class="hotel-image" />
 const loadLocations = function() {
-    availableCurrencies.forEach((item, index) => {
+    locations.forEach((item, index) => {
     const card = document.createElement('div');
     card.classList = 'card-body';
 
