@@ -28,6 +28,7 @@ html, body {
     height: 100%;
     font-family: 'Montserrat', sans-serif;
     max-width: 100%;
+    scroll-behavior: smooth;
     /* overflow-x: hidden; */
 }
 
@@ -479,6 +480,10 @@ option  {
     fill: #fff;
     overflow: hidden;
     
+}
+
+.explore-btn {
+    cursor: pointer;
 }
 .svg-curve::before {
     box-sizing: inherit;

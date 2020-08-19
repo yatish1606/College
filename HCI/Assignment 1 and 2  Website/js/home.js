@@ -6,6 +6,7 @@ const $logoImage = document.getElementById('logo')
 const $languageSelectImage = document.getElementById('language-select-image')
 const $languageDropdownArrow = document.getElementById('language-select')
 const $locations = document.querySelector('.locations')
+const $exploreButton = document.querySelector('.explore-btn')
 //const $languageSelect = document.getElementById('language-select')
 
 const locations = [
@@ -108,5 +109,9 @@ window.addEventListener('scroll', event => {
         $logoImage.src = "images/icons/logo_white.png"
         $languageSelectImage.src = "images/icons/language_white.png"
     }
+})
+
+$exploreButton.addEventListener('click', () => {
+    window.scrollTo(0,1200)
 })
 

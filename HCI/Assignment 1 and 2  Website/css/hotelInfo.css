@@ -853,7 +853,6 @@ html, body {
 .review-box {
     width: calc(100% - 20px);
     margin: 10px;
-    height: 300px;
     background-color: white;
     border-radius: 10px;
     display:flex;
@@ -911,4 +910,119 @@ html, body {
 .review-box-titlebar h5 {
     margin: 0;
     padding: 0;
+}
+
+.review-box-filters {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: transparent;
+    width: 100%;
+    height: 300px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.traveller-rating {
+    width: 42%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.time-of-year {
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.traveller-type {
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.language {
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.review-box-filters h3 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 15px;
+    color:#484848;
+    font-weight: 700;
+    margin: 0%;
+    padding:0;
+}
+
+progress {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 60%;
+    height: 12px;
+  }
+
+progress::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+progress[value]::-webkit-progress-value {
+    background-color: #FF5A5F;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+.traveller-rating-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top : 10px;
+}
+
+.traveller-rating-item span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.traveller-rating-item p {
+    font-family: 'Nunito Sans';
+    font-size: 15px;
+    color: #484848;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+
+.traveller-rating-item input {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background-color: #fff;
+    border: 0.5px solid #484848;
+    margin: 5px;
+    box-shadow: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
