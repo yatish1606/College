@@ -937,7 +937,7 @@ html, body {
     width: 18%;
     display: flex;
     flex-direction: column;
-    background-color: green;
+    background-color: transparent;
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -947,7 +947,7 @@ html, body {
     width: 18%;
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    background-color: transparent;
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -957,7 +957,7 @@ html, body {
     width: 22%;
     display: flex;
     flex-direction: column;
-    background-color: yellow;
+    background-color: transparent;
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -970,6 +970,7 @@ html, body {
     font-weight: 700;
     margin: 0%;
     padding:0;
+    margin-bottom: 15px;
 }
 
 progress {
@@ -995,7 +996,7 @@ progress[value]::-webkit-progress-value {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-top : 10px;
+    margin-top : 5px;
 }
 
 .traveller-rating-item span {
@@ -1006,7 +1007,7 @@ progress[value]::-webkit-progress-value {
 
 .traveller-rating-item p {
     font-family: 'Nunito Sans';
-    font-size: 15px;
+    font-size: 14px;
     color: #484848;
     font-weight: 600;
     margin: 0;
@@ -1014,15 +1015,31 @@ progress[value]::-webkit-progress-value {
 }
 
 .traveller-rating-item input {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 2px;
     background-color: #fff;
     border: 0.5px solid #484848;
-    margin: 5px;
+    margin: 5px 5px 5px 0;
     box-shadow: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    appearance: none;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.traveller-rating-item input:checked {
+    background-color: #FF5A5F;
+    transition: 0.3s;
+}
+
+.timeofyear-rating-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top : 5px;
 }
