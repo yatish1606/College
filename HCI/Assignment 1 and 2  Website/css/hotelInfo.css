@@ -918,7 +918,6 @@ html, body {
     align-items: flex-start;
     background-color: transparent;
     width: 100%;
-    height: 300px;
     padding: 0 10px;
     box-sizing: border-box;
 }
@@ -1042,4 +1041,161 @@ progress[value]::-webkit-progress-value {
     flex-direction: row;
     align-items: center;
     margin-top : 5px;
+}
+
+.popular-mentions {
+    width: 100%;
+    display: inline-block;
+    background-color: transparent;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.popular-mentions h3 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 15px;
+    color:#484848;
+    font-weight: 700;
+    margin: 0%;
+    padding:0;
+    margin-bottom: 15px;
+}
+
+.popular-mentions-items {
+    width: 100%;
+    display: block;
+    background-color: transparent;
+}
+
+.popular-mentions-item {
+    padding: 3px 7px;
+    border: 0.4px solid #484848;
+    border-radius: 3px;
+    margin: 3px 4px;
+    display: inline-block;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 13px;
+    color:#484848;
+    font-weight: 500;
+    transition:0.3s;
+    cursor: pointer;
+}
+.popular-mentions-item:hover {
+    background-color: #FF5A5F;
+    color: #fff;
+    transition:0.3s;
+    border: 0.4px solid #FF5A5F;
+}
+
+.reviews-items {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+    margin-top: 10px;
+    padding: 5px 20px;
+}
+
+.review-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 0.5px solid #eee;
+}
+
+.review-item-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+
+.review-item-top img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.review-item-top-name {
+    display: flex;
+    flex-direction: column;
+}
+.review-item-top-name span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin:2px;
+    padding: 0
+}
+
+.review-item-top-name  h3 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 15px;
+    color:#484848;
+    font-weight: 700;
+    margin: 0%;
+    padding:0;
+}
+
+.review-item-top-name  h6 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 15px;
+    color:#ababab;
+    font-weight: 500;
+    margin: 0%;
+    padding:0 5px;
+}
+
+.review-item-top-name  h4 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 12px;
+    color:#ababab;
+    font-weight: 500;
+    margin: 0%;
+    padding:0
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    margin: auto 5px;
+    border-radius: 2px;
+    background-color: #878787;
+}
+
+.review-body {
+    width:  100%;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+.stars {
+    margin: 10px 0;
+}
+
+.fa {
+    color: #d3d3d3;
+    font-size: 8px;
+  }
+  
+  .checked {
+    color: orange;
+  }
+
+.review-body h2 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 18px;
+    color:#2a2b2b;
+    font-weight: 700;
+    margin: 0%;
+    padding:5px 0
+}
+
+.review-body p {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    color:#484848;
+    font-weight: 500;
+    margin: 0%;
+    line-height: 20px;
 }
