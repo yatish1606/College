@@ -1,0 +1,10 @@
+this is just a sample file for testing of program.
+here we will find out the number of words
+per line
+so we will check for whitespace and
+newline character
+and increment
+System Programming lab
+Yatish Kelkar
+TE IT 8001
+Practice Assignment 2

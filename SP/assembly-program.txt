@@ -1,0 +1,4 @@
+- START 100 -
+A MOVEM AREG, ='2'
+B READ BREG -
+- LTORG - -
