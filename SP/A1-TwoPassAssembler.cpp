@@ -60,10 +60,18 @@ class PoolTable {
 
 class Mnemonics {
     
-    private : 
-        int index;
+    public : 
         string mnemonic;
         string opcode;  
+
+    
+
+        Mnemonics() {}
+
+        Mnemonics(string mnemonicFormal, string opcodeFormal) {
+            mnemonic = mnemonicFormal;
+            opcode = opcodeFormal;
+        }
 };
 
 class ProgramAnalyzer {
@@ -72,17 +80,23 @@ class ProgramAnalyzer {
         vector <SymbolTable> symbolTable;
         vector <LiteralTable> literalTable;
         vector <PoolTable> poolTable;
-        fstream sourceFile, intermediateCodeFile, symbolFile, literalFile, poolFile;
+        vector <Mnemonics> mnemonicsTable;
+        fstream sourceFile, intermediateCodeFile, symbolFile, literalFile, poolFile, mnemonicFile;
         int LC;
     
     public : 
         ProgramAnalyzer(int);
         bool convertToCode();
+        void displaySymbolTable();
+        void displayLiteralTable();
+        void displayPoolTable();
+        bool isMnemonic(string);
 };
 
 ProgramAnalyzer :: ProgramAnalyzer (int LCFormal) {
 
     LC = LCFormal;
+    string currentLine;
     cout << "\nOpening source file..." << endl;
             
     sourceFile.open("assembly-program.txt", ios::in);
@@ -93,6 +107,27 @@ ProgramAnalyzer :: ProgramAnalyzer (int LCFormal) {
     } else {
         cout << "\nSource assembly file opened successfully" << endl;
     }
+
+    mnemonicFile.open("mnemonics.txt", ios::in);
+
+    if(!mnemonicFile) {
+        cout << "\nError opening mnemonic file, please try again" << endl;
+        exit(0);
+    } 
+
+    while(!mnemonicFile.eof() && getline(mnemonicFile, currentLine, '\n')) {
+
+        vector <string> mnemonics;
+        string word;
+        
+        istringstream s(currentLine);
+        while(getline(s, word, ' ')) {
+            mnemonics.push_back(word);
+        }
+
+        mnemonicsTable.push_back(Mnemonics(mnemonics.at(0), mnemonics.at(1)));
+    }
+
 }
 
 bool ProgramAnalyzer :: convertToCode() {
@@ -116,21 +151,34 @@ bool ProgramAnalyzer :: convertToCode() {
         operand1 = inputWords.at(2);
         operand2 = inputWords.at(3);
 
+
+        // conditions for label
         if (label != "-") {
             symbolTable.push_back(SymbolTable((int)symbolTable.size(), LC, label));
         } 
 
+
+        // conditions for insruction
+        if(instruction == "START") LC = atoi(operand1.c_str());
+
+        
+        // conditions for operand1
+        if(operand1 != "-") {
+            if(operand1.at(operand1.size()-1) == ',') {
+                operand1.resize(operand1.size() - 1);
+            }
+            if(!isMnemonic(operand1)) {
+                cout << "\nnot mnemonic" << endl;
+            }
+        }
+
+
+        // conditions for operand2
         if (operand2 != "-") {
             if (operand2.at(0) == '=') {
                 literalTable.push_back(LiteralTable((int)literalTable.size(), LC, operand2));
             } else {
                 symbolTable.push_back(SymbolTable((int)symbolTable.size(), LC, operand2));
-            }
-        }
-
-        if(operand1 != "-") {
-            if(operand1.at(operand1.size()-1) == ',') {
-                operand1.resize(operand1.size() - 1);
             }
         }
 
@@ -140,14 +188,26 @@ bool ProgramAnalyzer :: convertToCode() {
 
     }
 
-    for(int i = 0; i < symbolTable.size(); i++) {
-        cout << symbolTable.at(i).symbol;
-    }
-
     cout << "\nLC is " << LC;
     return true;
 }
 
+void ProgramAnalyzer :: displaySymbolTable() {
+    
+    cout << "\nSymbol table is " << endl; 
+    for(int i = 0; i < symbolTable.size(); i++) {
+        cout << symbolTable.at(i).symbol;
+    }
+
+}
+
+bool ProgramAnalyzer :: isMnemonic(string search) {
+
+    for(int i = 0; i < mnemonicsTable.size(); i++) {
+        if(mnemonicsTable.at(i).mnemonic == search) return true;
+    } 
+    return false;
+}
 
 
 int main () {
