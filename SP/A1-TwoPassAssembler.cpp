@@ -36,12 +36,12 @@ class SymbolTable {
 
 class LiteralTable {
     
-    private : 
+    public : 
         int index;
         int location;
         string literal;
 
-    public :
+    // public :
 
         LiteralTable() {}
 
@@ -54,8 +54,12 @@ class LiteralTable {
 
 class PoolTable {
 
-    private : 
+    public : 
         int poolNumber;
+
+        PoolTable(int poolNumberFormal) {
+            poolNumber = poolNumberFormal;
+        }
 };
 
 class Mnemonics {
@@ -85,7 +89,7 @@ class ProgramAnalyzer {
         int LC;
     
     public : 
-        ProgramAnalyzer(int);
+        ProgramAnalyzer();
         bool convertToCode();
         void displaySymbolTable();
         void displayLiteralTable();
@@ -93,9 +97,8 @@ class ProgramAnalyzer {
         bool isMnemonic(string);
 };
 
-ProgramAnalyzer :: ProgramAnalyzer (int LCFormal) {
+ProgramAnalyzer :: ProgramAnalyzer () {
 
-    LC = LCFormal;
     string currentLine;
     cout << "\nOpening source file..." << endl;
             
@@ -133,11 +136,14 @@ ProgramAnalyzer :: ProgramAnalyzer (int LCFormal) {
 bool ProgramAnalyzer :: convertToCode() {
 
     string currentLine, word;
+    bool shouldUpdateLC = false;
     
     cout << "\nStarting reading source file..." << endl;
 
     while(!sourceFile.eof() && getline(sourceFile, currentLine, '\n')) {
-
+        
+        if(shouldUpdateLC) LC++;
+        
         vector <string> inputWords;
         string label, instruction, operand1, operand2;
        
@@ -151,6 +157,8 @@ bool ProgramAnalyzer :: convertToCode() {
         operand1 = inputWords.at(2);
         operand2 = inputWords.at(3);
 
+        
+        cout << label << "\t" << instruction << "\t" << operand1 << "\t" << operand2<< "\t" << LC << endl;
 
         // conditions for label
         if (label != "-") {
@@ -159,7 +167,27 @@ bool ProgramAnalyzer :: convertToCode() {
 
 
         // conditions for insruction
-        if(instruction == "START") LC = atoi(operand1.c_str());
+        if(instruction == "START") {
+            LC = atoi(operand1.c_str()) - 1;
+            poolTable.push_back(PoolTable((int)literalTable.size()));
+        }
+        else if(instruction == "LTORG") {
+            
+            poolTable.push_back(PoolTable((int)literalTable.size()));
+            
+            int numberOfLiterals = poolTable.at(poolTable.size() -1 ).poolNumber - poolTable.at(poolTable.size() -2 ).poolNumber;
+            
+            for(int i = 0; i < numberOfLiterals; i++) {
+                literalTable.at((int)literalTable.size() - numberOfLiterals + i).location = LC ;
+                LC++;
+            }
+            shouldUpdateLC = false;
+            continue;
+        }
+        else if(instruction == "END") {
+            shouldUpdateLC = false;
+            continue;
+        }
 
         
         // conditions for operand1
@@ -168,7 +196,7 @@ bool ProgramAnalyzer :: convertToCode() {
                 operand1.resize(operand1.size() - 1);
             }
             if(!isMnemonic(operand1)) {
-                cout << "\nnot mnemonic" << endl;
+                
             }
         }
 
@@ -182,21 +210,43 @@ bool ProgramAnalyzer :: convertToCode() {
             }
         }
 
-        cout << label << "\t" << instruction << "\t" << operand1 << "\t" << operand2<< endl;
-
-        LC++;
+        shouldUpdateLC = true;
 
     }
-
+    
+    displayPoolTable();
+    displayLiteralTable();
+    displaySymbolTable();
     cout << "\nLC is " << LC;
     return true;
 }
 
 void ProgramAnalyzer :: displaySymbolTable() {
     
-    cout << "\nSymbol table is " << endl; 
+    cout << "\nSymbol table is :\n" << endl; 
+    cout << "INDEX\tSYMBOL\tADDRESS" << endl;  
     for(int i = 0; i < symbolTable.size(); i++) {
-        cout << symbolTable.at(i).symbol;
+        cout << i << "\t" << symbolTable.at(i).symbol << "\t" << "address" << endl;
+    }
+
+}
+
+void ProgramAnalyzer :: displayLiteralTable() {
+    
+    cout << "\nLiteral table is :\n" << endl; 
+    cout << "INDEX\tLITERAL\tADDRESS" << endl;  
+    for(int i = 0; i < literalTable.size(); i++) {
+        cout << i << "\t" << literalTable.at(i).literal << "\t" << literalTable.at(i).location << endl;
+    }
+
+}
+
+void ProgramAnalyzer :: displayPoolTable() {
+    
+    cout << "\nPool table is :\n" << endl;
+    cout << "INDEX\tPOOL NUMBER" << endl;  
+    for(int i = 0; i < poolTable.size(); i++) {
+        cout << i << "\t" << poolTable.at(i).poolNumber << endl;
     }
 
 }
@@ -212,12 +262,7 @@ bool ProgramAnalyzer :: isMnemonic(string search) {
 
 int main () {
 
-    int startingAddress;
-
-    cout << "\nEnter the starting address : ";
-    cin >> startingAddress;
-
-    ProgramAnalyzer analyzer(startingAddress);
+    ProgramAnalyzer analyzer;
     analyzer.convertToCode();
 
     return 0;
