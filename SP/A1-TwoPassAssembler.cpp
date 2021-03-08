@@ -166,8 +166,8 @@ void ProgramAnalyzer :: convertToCode() {
         operand1 = inputWords.at(2);
         operand2 = inputWords.at(3);
 
-        cout << "\n\n-------------------------------------\n";
-        cout << label << "\t" << instruction << "\t" << operand1 << "\t" << operand2<< "\t" << LC ;
+        // cout << "\n\n-------------------------------------\n";
+        // cout << label << "\t" << instruction << "\t" << operand1 << "\t" << operand2<< "\t" << LC ;
 
         detectErrors(label, instruction, operand1, operand2);
 
@@ -301,7 +301,7 @@ void ProgramAnalyzer :: convertToCode() {
     displayPoolTable();
     displayLiteralTable();
     displaySymbolTable();
-    cout << "\nLC is " << LC << endl;
+    
 }
 
 
@@ -413,6 +413,10 @@ void ProgramAnalyzer :: detectErrors(string label, string instruction, string op
         if(operand1 != "-" || operand2 != "-")
             errorMessages.push_back("Operand detected for declarative statements");
 
+    if(instruction == "START" || instruction == "ORIGIN")
+        if(operand1 == "-")
+            errorMessages.push_back("No operand found");
+            
     for(int i = 0; i < errorMessages.size(); i++) {
         cout << "\nERROR : " << errorMessages.at(i);
     }
