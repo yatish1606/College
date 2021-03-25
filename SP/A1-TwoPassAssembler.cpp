@@ -80,7 +80,7 @@ class Mnemonics {
         }
 };
 
-class ProgramAnalyzer {
+class Assembler {
     
     private : 
         vector <SymbolTable> symbolTable;
@@ -89,9 +89,17 @@ class ProgramAnalyzer {
         vector <Mnemonics> mnemonicsTable;
         fstream sourceFile, intermediateCodeFile, symbolFile, literalFile, poolFile, mnemonicFile;
         int LC;
+        vector <string> errorMessages;
+        vector <string> IC;
+        stringstream ss;
+        string temp;
+        bool startPresent, endPresent, invalidInstruction;
+        int instructionNumber;
+        char buffer[10];
+
     
     public : 
-        ProgramAnalyzer();
+        Assembler();
         void convertToCode();
         void displaySymbolTable();
         void displayLiteralTable();
@@ -102,9 +110,10 @@ class ProgramAnalyzer {
         bool isLiteralAlreadyPresent(string);
         bool isLabelAreadyPresent(string);
         void detectErrors(string, string, string, string);
+        void writeOutput();
 };
 
-ProgramAnalyzer :: ProgramAnalyzer () {
+Assembler :: Assembler () {
 
     string currentLine;
     cout << "\nOpening source file..." << endl;
@@ -138,11 +147,16 @@ ProgramAnalyzer :: ProgramAnalyzer () {
         mnemonicsTable.push_back(Mnemonics(mnemonics.at(0), mnemonics.at(1), mnemonics.at(2)));
     }
 
+    startPresent = false;
+    endPresent = false;
+    invalidInstruction = false;
+    instructionNumber = 0;
+
 }
 
 
 // converts the assembly program to intermeidate code
-void ProgramAnalyzer :: convertToCode() {
+void Assembler :: convertToCode() {
 
     string currentLine, word;
     bool shouldUpdateLC = false;
@@ -167,15 +181,23 @@ void ProgramAnalyzer :: convertToCode() {
         operand2 = inputWords.at(3);
 
         // cout << "\n\n-------------------------------------\n";
-        // cout << label << "\t" << instruction << "\t" << operand1 << "\t" << operand2<< "\t" << LC ;
-
+        // cout << "l:" << label << "\ti:" << instruction << "\to1:" << operand1 << "\to2:" << operand2<< "\t" << LC ;
+        if(instructionNumber == 0 && instruction != "START") {
+            startPresent = false;
+            break;
+        }
         detectErrors(label, instruction, operand1, operand2);
-
+        // cout << " \n\ninstr no" << instructionNumber;
         // conditions for insruction
+        
         if(instruction == "START") {
             LC = atoi(operand1.c_str());
             poolTable.push_back(PoolTable((int)literalTable.size()));
-            cout << "\n(" << returnType("START") << "," << returnOpcode("START") << ") (C," << LC + 1 << ")" ;
+            cout << "\n(" << returnType("START") << "," << returnOpcode("START") << ")  (C," << LC << ")" ;
+            //ss << LC + 1; ss >> temp;
+            IC.push_back("\n(" + returnType("START") + "," + returnOpcode("START") + ")\t(C," + string(itoa(LC, buffer, 10)) + ")");
+            startPresent = true;
+            instructionNumber++;
             continue;
         }
         else if(instruction == "LTORG") {
@@ -190,6 +212,9 @@ void ProgramAnalyzer :: convertToCode() {
             }
             shouldUpdateLC = false;
             cout << "\n(" << returnType("LTORG") << "," << returnOpcode("LTORG") << ")" ;
+            
+            IC.push_back("\n(" + returnType("LTORG") + "," + returnOpcode("LTORG") + ")") ;
+            instructionNumber++;
             continue;
         }
         else if(instruction == "ORIGIN") {
@@ -206,22 +231,31 @@ void ProgramAnalyzer :: convertToCode() {
             }
             shouldUpdateLC = false;
             cout << "\n(" << returnType("ORIGIN") << "," << returnOpcode("ORIGIN") << ") (C," << LC << ")" ;
+            ss << LC ; ss >> temp;
+            IC.push_back("\n(" + returnType("ORIGIN") + "," + returnOpcode("ORIGIN") + ") (C," + string(itoa(LC, buffer, 10)) + ")" );
+            instructionNumber++;
             continue;
         }
         else if(instruction == "DS") {
             LC = LC + atoi(operand1.c_str());
             cout << "\n(" << returnType("DS") << "," << returnOpcode("DS") << ") (C," << operand1 << ")" ;
+            IC.push_back("\n(" + returnType("DS") + "," + returnOpcode("DS") + ") (C," + operand1 + ")" );
+            instructionNumber++;
             continue;
         }
         else if(instruction == "END") {
             shouldUpdateLC = false;
             cout << "\n(" << returnType("END") << "," << returnOpcode("END") << ")" << endl ;
+            IC.push_back("\n(" + returnType("END") + "," + returnOpcode("END") + ")" + "\n" );
+            endPresent = true;
+            instructionNumber++;
             continue;
         }
         else if(instruction == "EQU") {
             
             cout << "\n(" << returnType("EQU") << "," << returnOpcode("EQU") << ")" ;
-            symbolTable.push_back(SymbolTable((int)symbolTable.size(), LC, label));
+            IC.push_back("\n(" + returnType("EQU") + "," + returnOpcode("EQU") + ")") ;
+            
             
             string symbolForEQU, operandForEQU;
             int i = 0, operandForEQUInt;
@@ -236,16 +270,28 @@ void ProgramAnalyzer :: convertToCode() {
                 i++;
             }
 
+            int locSymb;
             for(int j = 0; j < symbolTable.size(); j++) {
                 if(symbolTable.at(j).symbol == symbolForEQU) {
                     cout << " (S," << j  << ") + " << operandForEQU;
+                    ss << j ; ss >> temp;
+                    locSymb = symbolTable.at(j).location;
+                    IC.push_back(" (S," + string(itoa(j, buffer, 10))  + ") + " + operandForEQU);
                 }
-            }   
-            
+            }  
+            symbolTable.push_back(SymbolTable((int)symbolTable.size(), locSymb+atoi(operandForEQU.c_str()), label)); 
+            instructionNumber++;
+            shouldUpdateLC = false;
             continue;
+        } else if(returnType(instruction) == "NA") {
+            errorMessages.push_back("Invalid instruction");
+            endPresent = true;
+            invalidInstruction = true;
+            break;
         }
 
         cout << "\n(" << returnType(instruction) << "," << returnOpcode(instruction) << ")" ;
+        IC.push_back("\n(" + returnType(instruction) + "," + returnOpcode(instruction) + ")") ;
 
         
         // conditions for operand1
@@ -253,11 +299,15 @@ void ProgramAnalyzer :: convertToCode() {
             if(operand1.at(operand1.size()-1) == ',') {
                 operand1.resize(operand1.size() - 1);
                 cout << " (" << returnType(operand1) << "," << returnOpcode(operand1) << ")" ;
+                IC.push_back(" (" + returnType(operand1) + "," + returnOpcode(operand1) + ")") ;
             }
             if(!isMnemonic(operand1)) {
                 if(!isLabelAreadyPresent(operand1)) {
                     symbolTable.push_back(SymbolTable((int)symbolTable.size(), -1, operand1));
                     cout << " (S," << symbolTable.size()-1 << ")" ;
+                    ss << (static_cast<int>(symbolTable.size()) - 1) ; ss >> temp;
+                    
+                    IC.push_back(" (S," + string(itoa(symbolTable.size()-1, buffer, 10)) + ")");
                 }
             }
         }
@@ -269,11 +319,15 @@ void ProgramAnalyzer :: convertToCode() {
                 if(!isLiteralAlreadyPresent(operand2)) {
                     literalTable.push_back(LiteralTable((int)literalTable.size(), LC, operand2));
                     cout << "(L," << literalTable.size()-1 << ")" ;
+                    ss << literalTable.size() - 1 ; ss >> temp;
+                    IC.push_back(" (L," + string(itoa(literalTable.size()-1, buffer, 10)) + ")");
                 }
             } else {
                 if(!isLabelAreadyPresent(operand2)) {
                     symbolTable.push_back(SymbolTable((int)symbolTable.size(), LC, operand2));
                     cout << " (S," << symbolTable.size()-1 << ")" ;
+                    ss << symbolTable.size() - 1 ; ss >> temp;
+                    IC.push_back(" (S," + string(itoa(symbolTable.size()-1, buffer, 10)) + ")");
                 }
             }
         }
@@ -283,7 +337,12 @@ void ProgramAnalyzer :: convertToCode() {
             if(isLabelAreadyPresent(label)) {
                 for(int i = 0; i < symbolTable.size(); i++) {
                     if(symbolTable.at(i).symbol == label) {
-                        symbolTable.at(i).location = LC;
+                        if(symbolTable.at(i).location == -1) {
+                            symbolTable.at(i).location = LC;
+                        }
+                        else {
+                            errorMessages.push_back("ERROR: Redeclaration of symbol");
+                        }
                         break;                        
                     }
                 }
@@ -291,22 +350,42 @@ void ProgramAnalyzer :: convertToCode() {
             else {
                 symbolTable.push_back(SymbolTable((int)symbolTable.size(), LC, label));
                 cout << "(S," << symbolTable.size()-1 << ")" ;
+                ss << symbolTable.size() - 1 ; ss >> temp;
+                IC.push_back(" (S," + string(itoa(symbolTable.size()-1, buffer, 10)) + ")");
             }
         } 
 
         shouldUpdateLC = true;
+        instructionNumber++;
 
     }
 
-    displayPoolTable();
-    displayLiteralTable();
-    displaySymbolTable();
+    if(!startPresent) errorMessages.push_back("Start instruction missing");
+    if(!endPresent && startPresent) errorMessages.push_back("End instruction missing");
+
+    for(int i = 0; i < symbolTable.size(); i++) {
+        if(symbolTable[i].location == -1) {
+            errorMessages.push_back("Symbol not defined");
+        }
+    }
+    cout << endl;
+    for(int i = 0; i < errorMessages.size(); i++) {
+        cout << "\nERROR : " << errorMessages.at(i);
+    }
+
+    if(startPresent && endPresent && !invalidInstruction) {
+        displayPoolTable();
+        displayLiteralTable();
+        displaySymbolTable();
+    }
+    
+    writeOutput();
     
 }
 
 
 // display the symbol table
-void ProgramAnalyzer :: displaySymbolTable() {
+void Assembler :: displaySymbolTable() {
     
     // cout << "\n==============================";
     cout << "\n\nSymbol table is :\n"; 
@@ -319,7 +398,7 @@ void ProgramAnalyzer :: displaySymbolTable() {
 
 
 // display literal table
-void ProgramAnalyzer :: displayLiteralTable() {
+void Assembler :: displayLiteralTable() {
     
     // cout << "\n==============================";
     cout << "\n\nLiteral table is :\n"; 
@@ -332,20 +411,20 @@ void ProgramAnalyzer :: displayLiteralTable() {
 
 
 // display pool table 
-void ProgramAnalyzer :: displayPoolTable() {
+void Assembler :: displayPoolTable() {
     
     // cout << "\n==============================";
     cout << "\n\nPool table is :\n";
-    cout << "INDEX\tPOOL NUMBER" << endl;  
-    for(int i = 0; i < poolTable.size(); i++) {
-        cout << i << "\t" << poolTable.at(i).poolNumber << endl;
+    cout << "POOL\tLIT NUMBER" << endl;  
+    for(int i = 0; i < poolTable.size()-1; i++) {
+        cout << i+1 << "\t" << poolTable.at(i).poolNumber << endl;
     }
     
 }
 
 
 // returns true or false based on whether input is present in mnemonic table
-bool ProgramAnalyzer :: isMnemonic(string search) {
+bool Assembler :: isMnemonic(string search) {
 
     for(int i = 0; i < mnemonicsTable.size(); i++) {
         if(mnemonicsTable.at(i).mnemonic == search) return true;
@@ -355,7 +434,7 @@ bool ProgramAnalyzer :: isMnemonic(string search) {
 
 
 // returns the opcode of the instruction
-string ProgramAnalyzer :: returnOpcode(string instruction) {
+string Assembler :: returnOpcode(string instruction) {
 
     for(int i = 0; i < mnemonicsTable.size(); i++) {
         if(mnemonicsTable.at(i).mnemonic == instruction) {
@@ -367,7 +446,7 @@ string ProgramAnalyzer :: returnOpcode(string instruction) {
 
 
 // returns the type of instruction
-string ProgramAnalyzer :: returnType(string instruction) {
+string Assembler :: returnType(string instruction) {
 
     for(int i = 0; i < mnemonicsTable.size(); i++) {
         if(mnemonicsTable.at(i).mnemonic == instruction) {
@@ -379,7 +458,7 @@ string ProgramAnalyzer :: returnType(string instruction) {
 
 
 // is literal already there in literal pool
-bool ProgramAnalyzer :: isLiteralAlreadyPresent (string literal) {
+bool Assembler :: isLiteralAlreadyPresent (string literal) {
     
     for(int i = poolTable.at((int)poolTable.size() - 1).poolNumber; i < literalTable.size(); i++) {
         if(literalTable.at(i).literal == literal) {
@@ -390,7 +469,7 @@ bool ProgramAnalyzer :: isLiteralAlreadyPresent (string literal) {
 }
 
 // is label already there in literal pool
-bool ProgramAnalyzer :: isLabelAreadyPresent (string label) {
+bool Assembler :: isLabelAreadyPresent (string label) {
     
     for(int i = 0; i < symbolTable.size(); i++) {
         if(symbolTable.at(i).symbol == label) {
@@ -401,9 +480,7 @@ bool ProgramAnalyzer :: isLabelAreadyPresent (string label) {
 }
 
 // detect errors in program
-void ProgramAnalyzer :: detectErrors(string label, string instruction, string operand1, string operand2) {
-
-    vector <string> errorMessages;
+void Assembler :: detectErrors(string label, string instruction, string operand1, string operand2) {
     
     if(instruction == "MOVEM" || instruction == "MOVER" || instruction == "ADD" || instruction == "SUB" || instruction == "MULT")
         if(operand1 != "AREG," && operand1 != "BREG," && operand1 != "CREG," && operand1 != "DREG,")
@@ -411,22 +488,51 @@ void ProgramAnalyzer :: detectErrors(string label, string instruction, string op
 
     if(instruction == "LTORG" || instruction == "END" || instruction == "STOP")
         if(operand1 != "-" || operand2 != "-")
-            errorMessages.push_back("Operand detected for declarative statements");
+            errorMessages.push_back("Unnecessary operand found");
 
     if(instruction == "START" || instruction == "ORIGIN")
         if(operand1 == "-")
             errorMessages.push_back("No operand found");
-            
-    for(int i = 0; i < errorMessages.size(); i++) {
-        cout << "\nERROR : " << errorMessages.at(i);
+
+    if(instruction == "START" || instruction == "ORIGIN")
+        if(operand2 != "-")
+            errorMessages.push_back("Unnecessary second operand detected");
+
+}
+
+void Assembler :: writeOutput () {
+
+    literalFile.open("literal_output.txt", ios::out);
+    poolFile.open("pool_output.txt", ios::out);
+    symbolFile.open("symbol_output.txt", ios::out);
+    intermediateCodeFile.open("ic.txt", ios::out);
+
+    literalFile << "  SRNO  LITERAL   LOCATION\n\n"; 
+    for(int i = 0; i < literalTable.size(); i++) {
+        literalFile << "   " << literalTable[i].index << "     " << literalTable[i].literal << "\t\t" << literalTable[i].location << endl;
     }
 
+    poolFile << "  POOL  LITERAL NUMBER\n\n"; 
+    for(int i = 0; i < poolTable.size()-1; i++) {
+        poolFile << "   " << i+1 << "     " << poolTable[i].poolNumber << endl;
+    }
+
+    symbolFile << "  SRNO  SYMBOL   LOCATION\n\n"; 
+    for(int i = 0; i < symbolTable.size(); i++) {
+        symbolFile << "   " << symbolTable[i].index << "\t\t\t" << symbolTable[i].symbol << "\t\t\t\t" << symbolTable[i].location << endl;
+    }
+
+    for(int i = 0; i < IC.size(); i++) {
+        intermediateCodeFile << "   " << IC[i] ;
+    }
+
+    cout << "\nOutput written to 4 files." << endl;
 }
 
 
 int main () {
 
-    ProgramAnalyzer analyzer;
+    Assembler analyzer;
     analyzer.convertToCode();
 
     return 0;
