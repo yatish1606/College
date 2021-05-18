@@ -1,0 +1,6 @@
+void main() 
+{
+    int a, b, c, isEven;
+    c = a + b;
+    isEven = b % 2;
+}
