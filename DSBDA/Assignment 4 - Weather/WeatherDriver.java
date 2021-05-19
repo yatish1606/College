@@ -38,7 +38,7 @@ public class WeatherDriver {
 
         string = fd.readLine();
 
-        float max = -9999, min = 9999, temp;
+        float max = Integer.MIN_VALUE, min = Integer.MAX_VALUE, temp;
         String minYear = null, maxYear = null;
 
         while(string != null) {
