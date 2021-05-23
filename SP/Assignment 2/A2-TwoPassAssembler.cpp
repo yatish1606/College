@@ -12,8 +12,6 @@
 #include<sstream>
 #include<algorithm>
 
-#define SIZE_SMALL 50
-#define SIZE_LARGE 100
 
 using namespace std;
 
