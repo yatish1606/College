@@ -5,20 +5,32 @@ csvFile <- "F:/College Assignements/DSBDA/Assignment 1 Group B/dataset_Facebook.
 
 facebookData <- read.csv(csvFile, sep = ';')
 
-if(!facebookData) {
-  print("Could not open dataset")
-  sys.on.exit(0)
-}
+# merge data
 
 subsetData <- facebookData[1:7, 1:8]
-head(subsetData)
-
 otherSubset <- facebookData[, 1:4]
-
 mergedData <- merge(subsetData, otherSubset, by = "Type")
+
+
+#rbind and cbind
+
+subset3 <- facebookData[,1:2]
+subset4 <- facebookData[,3:4]
+colBind <- cbind(subset3, subset4)
+colBind
+
+subset5 <- facebookData[1:10, c(1,2,3,4)]
+subset6 <- facebookData[11:20, c(1,2,3,4)]
+rowBind <- rbind(subset5, subset6)
+rowBind
+
+
+# sorting
 
 sortedByLikes <- facebookData[order(facebookData$like, decreasing = "True"), c(1,2,3,4,17)]
 head(sortedByLikes)
+
+# transposing
 
 transpose <- t(subsetData)
 View(transpose)
@@ -27,11 +39,11 @@ library("reshape")
  
 # for every combination of type-category, every other variable
 # will add as a third column along with it's value
-molten <- melt(subsetData, id = c("Type","Category"))
+molten <- melt(facebookData, id = c("Type","Category"))
 View(molten)  
 
-
-castData <- cast(molten, Type~variable, sum)
+# for every kind of type there'll be one record
+castData <- cast(molten, fun.aggregate = max)
 View(castData)
 
 
