@@ -24,6 +24,8 @@ enum departments
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -63,6 +65,8 @@ public:
         year = yearF;
         department = departmentF;
     }
+    void listStudents();
+    void listStudyMaterialAssignments();
 };
 
 //  Student class, extends Person
@@ -89,6 +93,8 @@ class Teacher : public Person
 public:
     Teacher(string nameF, string emailF, string passwordF) : Person(nameF, emailF, passwordF) {}
     void createCourse(vector<Course> &, string, string, string, years, departments);
+    void createStudyMaterial(string title, fstream *filePtr, string desciption, string courseCode);
+    void createAssignment(string title, fstream *filePtr, string desciption, string courseCode, string dueDate, int maxMarks);
 };
 
 // Course student map
@@ -111,10 +117,31 @@ public:
     }
 };
 
+class StudyMaterialAssignment
+{
+public:
+    bool isStudyMaterial;
+    string title;
+    string *dueDate;
+    string description;
+    fstream *file;
+    Course course;
+    int *maxMarks;
+};
+
 vector<Course> courses;
 vector<CourseMap> courseMap;
+vector<StudyMaterialAssignment> studyMaterialsAssignments;
 
-// implementation of fucntions
+/*
+
+
+
+    IMPLEMENTATION OF FUNCTIONS FOR ALL CLASSES
+
+
+
+*/
 void Person::printDetails()
 {
     cout << "\nName: " << name;
@@ -145,7 +172,100 @@ void Student::joinCourse(string courseCode, Student student)
         CourseMap currentCourseMap = courseMap.at(i);
         if (currentCourseMap.course.courseCode == courseCode)
         {
-            currentCourseMap.addStudent(student);
+            courseMap.at(i).addStudent(student);
+        }
+    }
+}
+
+void Teacher::createStudyMaterial(string title, fstream *filePtr, string description, string courseCode)
+{
+    StudyMaterialAssignment studyMaterial;
+    studyMaterial.title = title;
+    studyMaterial.description = description;
+    studyMaterial.file = filePtr;
+    studyMaterial.isStudyMaterial = true;
+    studyMaterial.dueDate = NULL;
+    studyMaterial.maxMarks = NULL;
+
+    for (int i = 0; i < courses.size(); i++)
+    {
+        if (courseCode == courses.at(i).courseCode)
+        {
+            studyMaterial.course = courses.at(i);
+            break;
+        }
+    }
+    studyMaterialsAssignments.push_back(studyMaterial);
+    cout << "Study material created successfully by " << name << " in classroom " << studyMaterial.course.title << endl;
+}
+
+void Teacher::createAssignment(string title, fstream *filePtr, string description, string courseCode, string dueDate, int maxMarks)
+{
+    StudyMaterialAssignment studyMaterial;
+    studyMaterial.title = title;
+    studyMaterial.description = description;
+    studyMaterial.file = filePtr;
+    studyMaterial.isStudyMaterial = true;
+    studyMaterial.dueDate = &dueDate;
+    studyMaterial.maxMarks = &maxMarks;
+
+    for (int i = 0; i < courses.size(); i++)
+    {
+        if (courseCode == courses.at(i).courseCode)
+        {
+            studyMaterial.course = courses.at(i);
+            break;
+        }
+    }
+    studyMaterialsAssignments.push_back(studyMaterial);
+    cout << "Assignment created successfully by " << name << " in classroom " << studyMaterial.course.title << endl;
+}
+
+void Course::listStudents()
+{
+    CourseMap map;
+    bool flag = false;
+    for (int i = 0; i < courseMap.size(); i++)
+    {
+        if (courseMap.at(i).course.courseCode == courseCode)
+        {
+            map = courseMap.at(i);
+            flag = true;
+            cout << endl
+                 << "Students in this course are : " << endl
+                 << "Count : "
+                 << map.studentsEnrolled.size() << endl;
+            for (int j = 0; j < map.studentsEnrolled.size(); j++)
+            {
+                cout << (j + 1) << ". " << map.studentsEnrolled.at(j).name << endl;
+            }
+            cout << endl;
+        }
+    }
+    if (!flag)
+    {
+        cout << endl
+             << "Error listing students";
+    }
+}
+
+void Course::listStudyMaterialAssignments()
+{
+    StudyMaterialAssignment sma;
+    cout << "=============================================================================================" << endl;
+    cout << left << setw(20) << setfill(' ') << "Name" << left << setw(20) << setfill(' ') << "Description" << left << setw(20) << setfill(' ') << "Type" << left << setw(12) << setfill(' ') << "Due Date" << left << setw(20) << setfill(' ') << "Max Marks" << endl;
+    cout << "=============================================================================================" << endl;
+    for (int i = 0; i < studyMaterialsAssignments.size(); i++)
+    {
+        if (courseCode == studyMaterialsAssignments.at(i).course.courseCode)
+        {
+            sma = studyMaterialsAssignments.at(i);
+            cout << left << setw(20) << setfill(' ') << sma.title
+                 << left << setw(20) << setfill(' ') << sma.description
+                 << left << setw(20) << setfill(' ') << (sma.isStudyMaterial ? "Study Material" : "Assignment")
+                 << left << setw(12) << setfill(' ') << (sma.isStudyMaterial ? "-" : sma.dueDate->c_str())
+                 << left << setw(20) << setfill(' ') << (sma.isStudyMaterial ? 0 : *sma.maxMarks)
+                 << endl;
         }
     }
 }
@@ -156,7 +276,14 @@ int main()
     // Person p;
     // p.registerPerson("Ajay", "ajay@gmail.com", "ajay@123");
 
-    Student s = Student("Ajay", "ajay@gmail.com", "ajay@123", BE, CSE);
+    fstream file;
+    fstream *filePtr;
+
+    file.open("sample.txt", ios::in);
+    filePtr = &file;
+
+    Student ajay = Student("Ajay", "ajay@gmail.com", "ajay@123", BE, CSE);
+    Student ellen = Student("Ellen", "ellen@gmail.com", "ellen@123", BE, CSE);
     // s.printStudentDetails();
 
     Teacher t = Teacher("Rahul", "rahul@gmail.com", "rahul@123");
@@ -164,12 +291,19 @@ int main()
 
     t.createCourse(courses, "SDM", t.name, "WGdgAyBs", BE, CSE);
 
-    s.joinCourse("WGdgAyBs", s);
+    ajay.joinCourse("WGdgAyBs", ajay);
+    ellen.joinCourse("WGdgAyBs", ellen);
 
+    // courseMap.at(0).course.listStudents();
+
+    t.createStudyMaterial("Study material 1", filePtr, "description", "WGdgAyBs");
+    t.createAssignment("Assignment 1", filePtr, "description", "WGdgAyBs", "2021-10-05", 20);
     // for (int i = 0; i < courseMap.size(); i++)
     // {
     //     cout << "\n=====" << courseMap.at(0).course.title << endl;
     // }
+
+    courseMap.at(0).course.listStudyMaterialAssignments();
 
     return 0;
 }
